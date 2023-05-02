@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-ZENO_VERSION = "0.1"
+ZENO_VERSION = "0.2"
 
 long_description = (
     "Zeno is an intepreter for Thunno 2. Read more at https://github.com/Thunno/Zeno"

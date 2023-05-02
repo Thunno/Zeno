@@ -9,4 +9,3 @@ According to Bing,
 > a Greek philosopher who challenged the notions of motion and infinity.
 
 So I just went with that as the name for the interpreter.
-

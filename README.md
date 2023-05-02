@@ -1,7 +1,7 @@
 # Zeno
 An interpreter for Thunno 2.
 
-#### Introduction
+## Introduction
 
 According to Bing,
 

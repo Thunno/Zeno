@@ -1,6 +1,8 @@
 # Zeno
 
-An Thunno 2 interpreter for Mac/Linux machines. **Note: this hasn't been tested on Windows, but it probably won't work**
+An Thunno 2 interpreter for Mac/Linux machines. 
+
+### Note: this hasn't been tested on Windows, but it probably won't work
 
 ## Introduction
 

@@ -1,6 +1,6 @@
 # Zeno
 
-An Thunno 2 interpreter for Mac/Linux machines. 
+An Thunno 2 interface for Mac/Linux machines. 
 
 ### Note: this hasn't been tested on Windows, but it probably won't work
 
@@ -11,7 +11,7 @@ According to Bing,
 > Zeno is a cool and mysterious name that evokes the paradoxes of Zeno of Elea,
 > a Greek philosopher who challenged the notions of motion and infinity.
 
-So I just went with that as the name for the interpreter.
+So I just went with that as the name for the interface.
 
 ## Setup
 

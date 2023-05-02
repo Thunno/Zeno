@@ -1,7 +1,8 @@
 from thunno2.lexer import tokenise
 from thunno2.flags import run
 from thunno2.version import THUNNO_VERSION
-import getkey, os
+import getkey
+import os
 
 """ ANSI color codes """
 BLACK = "\033[0;30m"
@@ -29,44 +30,50 @@ NEGATIVE = "\033[7m"
 CROSSED = "\033[9m"
 END = "\033[0m"
 
+
 def colourise(code):
-    ret = ''
+    ret = ""
     for chars, desc, other in code:
-        if 'number' in desc:
+        if "number" in desc:
             ret += CYAN + chars
-        elif 'string' in desc or 'dictionary' in desc or 'character' in desc or 'alphabetic' in desc:
+        elif (
+            "string" in desc
+            or "dictionary" in desc
+            or "character" in desc
+            or "alphabetic" in desc
+        ):
             ret += BROWN + chars
-        elif 'list' in desc:
+        elif "list" in desc:
             ret += RED + chars
-        elif 'print' in desc:
+        elif "print" in desc:
             ret += DARK_GRAY + chars
-        elif desc == 'digraph':
+        elif desc == "digraph":
             ret += GREEN + chars
-        elif desc == 'constant':
+        elif desc == "constant":
             ret += LIGHT_PURPLE + chars
-        elif 'single function' in desc or desc == 'outer product':
+        elif "single function" in desc or desc == "outer product":
             ret += LIGHT_BLUE + chars
-        elif desc in ('context variable', 'iteration index'):
+        elif desc in ("context variable", "iteration index"):
             ret += LIGHT_RED + chars
-        elif desc == 'while loop':
+        elif desc == "while loop":
             ret += LIGHT_BLUE + chars
             cond, body = other
             ret += colourise(cond)
-            ret += LIGHT_BLUE + ';'
+            ret += LIGHT_BLUE + ";"
             ret += colourise(body)
-            ret += LIGHT_BLUE + ')'
+            ret += LIGHT_BLUE + ")"
         elif isinstance(other, list):
             ret += LIGHT_BLUE + chars
             ret += colourise(other)
-            ret += LIGHT_BLUE + (
-                '}' if chars == '{' else ';'
-            )
+            ret += LIGHT_BLUE + ("}" if chars == "{" else ";")
         else:
             ret += END + chars
     return ret
 
+
 def remove_colours(code):
-    return ''.join(c for c in code if len(repr(c)) < 5)
+    return "".join(c for c in code if len(repr(c)) < 5)
+
 
 def get_colours(code):
     tokenised = tokenise(code)[1]
@@ -77,53 +84,49 @@ def get_colours(code):
             colourised = colourised[:-1]
     return colourised
 
+
 def main():
-    os.system('clear')
-    print(END + 'Thunno', THUNNO_VERSION, 'interpreter')
-    print('Press CTRL + H for help\n')
-    print('Code:')
-    things = {
-        'code': '',
-        'inputs': '',
-        'flags': '',
-        'help': ''
-    }
-    curr = 'code'
+    os.system("clear")
+    print(END + "Thunno", THUNNO_VERSION, "interpreter")
+    print("Press CTRL + H for help\n")
+    print("Code:")
+    things = {"code": "", "inputs": "", "flags": "", "help": ""}
+    curr = "code"
     while True:
         key = getkey.getkey()
-        if key == '\x7f':  # Backspace
+        if key == "\x7f":  # Backspace
             things[curr] = things[curr][:-1]
-        elif key == '\x12':  # CTRL + R
-            os.system('clear')
-            print(END + 'Flags:', things['flags'])
-            print('\nCode:', get_colours(things['code']))
-            print(END + '\nInputs', things['inputs'])
-            print('\nOutput:')
-            run(things['flags'], tokenise(things['code'])[1], things['inputs'])
+        elif key == "\x12":  # CTRL + R
+            os.system("clear")
+            print(END + "Flags:", things["flags"])
+            print("\nCode:", get_colours(things["code"]))
+            print(END + "\nInputs", things["inputs"])
+            print("\nOutput:")
+            run(things["flags"], tokenise(things["code"])[1], things["inputs"])
             break
-        elif key == '\x04':  # CTRL + D
-            curr = 'code'
-        elif key == '\x06':  # CTRL + F
-            curr = 'flags'
-        elif key == '\x07':  # CTRL + G
-            curr = 'inputs'
-        elif key == '\x08':  # CTRL + H
-            os.system('clear')
-            print(END + 'Thunno', THUNNO_VERSION, 'interpreter\n')
-            print('CTRL + D \t Switch to code')
-            print('CTRL + F \t Switch to flags')
-            print('CTRL + G \t Switch to inputs')
-            print('CTRL + R \t Run code')
-            print('\nPress CTRL + H to exit this help message')
-            while getkey.getkey() != '\x08':
+        elif key == "\x04":  # CTRL + D
+            curr = "code"
+        elif key == "\x06":  # CTRL + F
+            curr = "flags"
+        elif key == "\x07":  # CTRL + G
+            curr = "inputs"
+        elif key == "\x08":  # CTRL + H
+            os.system("clear")
+            print(END + "Thunno", THUNNO_VERSION, "interpreter\n")
+            print("CTRL + D \t Switch to code")
+            print("CTRL + F \t Switch to flags")
+            print("CTRL + G \t Switch to inputs")
+            print("CTRL + R \t Run code")
+            print("\nPress CTRL + H to exit this help message")
+            while getkey.getkey() != "\x08":
                 pass
         else:
             things[curr] += key
-        os.system('clear')
-        print(END + 'Thunno', THUNNO_VERSION, 'interpreter')
-        print('Press CTRL + H for help\n')
-        print(curr.title() + ':')
-        if curr == 'code':
-            print(get_colours(things['code']))
+        os.system("clear")
+        print(END + "Thunno", THUNNO_VERSION, "interpreter")
+        print("Press CTRL + H for help\n")
+        print(curr.title() + ":")
+        if curr == "code":
+            print(get_colours(things["code"]))
         else:
             print(things[curr])

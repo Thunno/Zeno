@@ -1,0 +1,2 @@
+[console_scripts]
+zeno = zeno.main:main

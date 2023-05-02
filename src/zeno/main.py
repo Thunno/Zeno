@@ -1,7 +1,8 @@
 from thunno2.lexer import tokenise
 from thunno2.flags import run
 from thunno2.version import THUNNO_VERSION
-import getkey, os
+import getkey
+import os
 
 """ ANSI color codes """
 BLACK = "\033[0;30m"
@@ -28,6 +29,7 @@ BLINK = "\033[5m"
 NEGATIVE = "\033[7m"
 CROSSED = "\033[9m"
 END = "\033[0m"
+
 
 def colourise(code):
     ret = ''
@@ -65,8 +67,10 @@ def colourise(code):
             ret += END + chars
     return ret
 
+
 def remove_colours(code):
     return ''.join(c for c in code if len(repr(c)) < 5)
+
 
 def get_colours(code):
     tokenised = tokenise(code)[1]
@@ -76,6 +80,7 @@ def get_colours(code):
         while code[-1] != colourised[-1]:
             colourised = colourised[:-1]
     return colourised
+
 
 def main():
     os.system('clear')

@@ -22,4 +22,3 @@ Classifier: Programming Language :: Python :: 3.10
 Description-Content-Type: text/x-rst
 
 Zeno is an intepreter for Thunno 2. Read more at https://github.com/Thunno/Zeno
-

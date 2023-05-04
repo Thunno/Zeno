@@ -1,3 +1,7 @@
+## This project has been abandoned as of 4th May 2023
+
+***
+
 # Zeno
 
 An Thunno 2 interface for Mac/Linux machines. 

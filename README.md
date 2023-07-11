@@ -4,7 +4,7 @@
 
 # Zeno
 
-An Thunno 2 interface for Mac/Linux machines. 
+An Thunno 2 interface for Mac/Linux machines.
 
 ### Note: this hasn't been tested on Windows, but it probably won't work
 
